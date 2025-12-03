@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- ES-DE Find Rules for Retro Station -->
+<!-- This file tells ES-DE where to find our AppImage emulators -->
+
+<ruleList>
+    <!-- DuckStation for PlayStation 1 -->
+    <emulator name="DuckStation">
+        <rule type="staticpath">
+            <entry>{{PROJECT_ROOT}}/appimages/DuckStation-x64.AppImage</entry>
+        </rule>
+    </emulator>
+
+    <!-- PCSX2 for PlayStation 2 -->
+    <emulator name="PCSX2">
+        <rule type="staticpath">
+            <entry>{{PROJECT_ROOT}}/appimages/pcsx2-v2.3.161-linux-appimage-x64-Qt.AppImage</entry>
+        </rule>
+    </emulator>
+
+    <!-- Dolphin for GameCube and Wii -->
+    <emulator name="Dolphin">
+        <rule type="staticpath">
+            <entry>{{PROJECT_ROOT}}/appimages/Dolphin_Emulator-x86_64.AppImage</entry>
+        </rule>
+    </emulator>
+
+    <!-- melonDS for Nintendo DS -->
+    <emulator name="melonDS">
+        <rule type="staticpath">
+            <entry>{{PROJECT_ROOT}}/appimages/melonDS-x86_64.AppImage</entry>
+        </rule>
+    </emulator>
+
+    <!-- mGBA for Game Boy Advance -->
+    <emulator name="mGBA">
+        <rule type="staticpath">
+            <entry>{{PROJECT_ROOT}}/appimages/mGBA-0.10.3-appimage-x64.appimage</entry>
+        </rule>
+    </emulator>
+
+    <!-- RetroArch for NES, SNES, Genesis, N64 -->
+    <emulator name="RetroArch">
+        <rule type="staticpath">
+            <entry>{{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage</entry>
+        </rule>
+    </emulator>
+</ruleList>

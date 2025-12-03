@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!-- ES-DE Custom Systems Configuration for Retro Station -->
+<!-- Defines launch commands for each system using our AppImage emulators -->
+
+<systemList>
+    <!-- PlayStation 1 -->
+    <system>
+        <name>psx</name>
+        <fullname>Sony PlayStation</fullname>
+        <path>{{PROJECT_ROOT}}/roms/psx</path>
+        <extension>.bin .BIN .cue .CUE .chd .CHD .ecm .ECM .iso .ISO .m3u .M3U .mds .MDS .pbp .PBP .7z .7Z .zip .ZIP</extension>
+        <command label="DuckStation">{{PROJECT_ROOT}}/appimages/DuckStation-x64.AppImage %ROM%</command>
+        <platform>psx</platform>
+        <theme>psx</theme>
+    </system>
+
+    <!-- PlayStation 2 -->
+    <system>
+        <name>ps2</name>
+        <fullname>Sony PlayStation 2</fullname>
+        <path>{{PROJECT_ROOT}}/roms/ps2</path>
+        <extension>.bin .BIN .chd .CHD .cso .CSO .dump .DUMP .elf .ELF .gz .GZ .iso .ISO .isz .ISZ .m3u .M3U .mdf .MDF .nrg .NRG .7z .7Z .zip .ZIP</extension>
+        <command label="PCSX2">{{PROJECT_ROOT}}/appimages/pcsx2-v2.3.161-linux-appimage-x64-Qt.AppImage %ROM%</command>
+        <platform>ps2</platform>
+        <theme>ps2</theme>
+    </system>
+
+    <!-- Nintendo GameCube -->
+    <system>
+        <name>gc</name>
+        <fullname>Nintendo GameCube</fullname>
+        <path>{{PROJECT_ROOT}}/roms/gc</path>
+        <extension>.ciso .CISO .dol .DOL .elf .ELF .gcm .GCM .gcz .GCZ .iso .ISO .json .JSON .m3u .M3U .rvz .RVZ .tgc .TGC .wad .WAD .wbfs .WBFS .wia .WIA .7z .7Z .zip .ZIP</extension>
+        <command label="Dolphin">{{PROJECT_ROOT}}/appimages/Dolphin_Emulator-x86_64.AppImage -b -e %ROM%</command>
+        <platform>gc</platform>
+        <theme>gc</theme>
+    </system>
+
+    <!-- Nintendo Wii -->
+    <system>
+        <name>wii</name>
+        <fullname>Nintendo Wii</fullname>
+        <path>{{PROJECT_ROOT}}/roms/wii</path>
+        <extension>.ciso .CISO .dol .DOL .elf .ELF .gcm .GCM .gcz .GCZ .iso .ISO .json .JSON .m3u .M3U .rvz .RVZ .tgc .TGC .wad .WAD .wbfs .WBFS .wia .WIA .7z .7Z .zip .ZIP</extension>
+        <command label="Dolphin">{{PROJECT_ROOT}}/appimages/Dolphin_Emulator-x86_64.AppImage -b -e %ROM%</command>
+        <platform>wii</platform>
+        <theme>wii</theme>
+    </system>
+
+    <!-- Nintendo DS -->
+    <system>
+        <name>nds</name>
+        <fullname>Nintendo DS</fullname>
+        <path>{{PROJECT_ROOT}}/roms/nds</path>
+        <extension>.app .APP .bin .BIN .nds .NDS .7z .7Z .zip .ZIP</extension>
+        <command label="melonDS">{{PROJECT_ROOT}}/appimages/melonDS-x86_64.AppImage %ROM%</command>
+        <platform>nds</platform>
+        <theme>nds</theme>
+    </system>
+
+    <!-- Game Boy Advance -->
+    <system>
+        <name>gba</name>
+        <fullname>Nintendo Game Boy Advance</fullname>
+        <path>{{PROJECT_ROOT}}/roms/gba</path>
+        <extension>.agb .AGB .bin .BIN .cgb .CGB .dmg .DMG .gb .GB .gba .GBA .gbc .GBC .sgb .SGB .7z .7Z .zip .ZIP</extension>
+        <command label="mGBA">{{PROJECT_ROOT}}/appimages/mGBA-0.10.3-appimage-x64.appimage -f %ROM%</command>
+        <platform>gba</platform>
+        <theme>gba</theme>
+    </system>
+
+    <!-- Nintendo Entertainment System -->
+    <system>
+        <name>nes</name>
+        <fullname>Nintendo Entertainment System</fullname>
+        <path>{{PROJECT_ROOT}}/roms/nes</path>
+        <extension>.fds .FDS .nes .NES .unf .UNF .unif .UNIF .7z .7Z .zip .ZIP</extension>
+        <command label="RetroArch Nestopia">env VK_LOADER_LAYERS_DISABLE='*' {{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage -L ~/.config/retroarch/cores/nestopia_libretro.so %ROM%</command>
+        <platform>nes</platform>
+        <theme>nes</theme>
+    </system>
+
+    <!-- Super Nintendo -->
+    <system>
+        <name>snes</name>
+        <fullname>Super Nintendo</fullname>
+        <path>{{PROJECT_ROOT}}/roms/snes</path>
+        <extension>.bin .BIN .bs .BS .fig .FIG .mgd .MGD .sfc .SFC .smc .SMC .swc .SWC .7z .7Z .zip .ZIP</extension>
+        <command label="RetroArch Snes9x">env VK_LOADER_LAYERS_DISABLE='*' {{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage -L ~/.config/retroarch/cores/snes9x_libretro.so %ROM%</command>
+        <platform>snes</platform>
+        <theme>snes</theme>
+    </system>
+
+    <!-- Sega Genesis / Mega Drive -->
+    <system>
+        <name>genesis</name>
+        <fullname>Sega Genesis</fullname>
+        <path>{{PROJECT_ROOT}}/roms/genesis</path>
+        <extension>.68k .68K .bin .BIN .chd .CHD .gen .GEN .md .MD .sgd .SGD .smd .SMD .7z .7Z .zip .ZIP</extension>
+        <command label="RetroArch Genesis Plus GX">env VK_LOADER_LAYERS_DISABLE='*' {{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage -L ~/.config/retroarch/cores/genesis_plus_gx_libretro.so %ROM%</command>
+        <platform>genesis</platform>
+        <theme>genesis</theme>
+    </system>
+
+    <!-- Nintendo 64 -->
+    <system>
+        <name>n64</name>
+        <fullname>Nintendo 64</fullname>
+        <path>{{PROJECT_ROOT}}/roms/n64</path>
+        <extension>.n64 .N64 .ndd .NDD .u1 .U1 .v64 .V64 .z64 .Z64 .7z .7Z .zip .ZIP</extension>
+        <command label="RetroArch Mupen64Plus">env VK_LOADER_LAYERS_DISABLE='*' {{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage -L ~/.config/retroarch/cores/mupen64plus_next_libretro.so %ROM%</command>
+        <platform>n64</platform>
+        <theme>n64</theme>
+    </system>
+</systemList>

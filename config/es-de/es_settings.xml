@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<config>
+<string name="ROMDirectory" value="{{PROJECT_ROOT}}/roms" />
+<string name="MediaDirectory" value="{{PROJECT_ROOT}}/media" />
+
+<!-- Default emulators for each system - must match command labels in es_systems.xml -->
+<string name="AlternativeEmulator_gba" value="mGBA" />
+<string name="AlternativeEmulator_nds" value="melonDS" />
+<string name="AlternativeEmulator_psx" value="DuckStation" />
+<string name="AlternativeEmulator_ps2" value="PCSX2" />
+<string name="AlternativeEmulator_gc" value="Dolphin" />
+<string name="AlternativeEmulator_wii" value="Dolphin" />
+<string name="AlternativeEmulator_nes" value="RetroArch Nestopia" />
+<string name="AlternativeEmulator_snes" value="RetroArch Snes9x" />
+<string name="AlternativeEmulator_genesis" value="RetroArch Genesis Plus GX" />
+<string name="AlternativeEmulator_n64" value="RetroArch Mupen64Plus" />
+
+<bool name="StartupSystem" value="" />
+<string name="GamelistViewStyle" value="automatic" />
+<string name="TransitionStyle" value="instant" />
+<string name="ThemeSet" value="slate-es-de" />
+<string name="ThemeVariant" value="all-systems" />
+<string name="ThemeColorScheme" value="dark" />
+<string name="ThemeAspectRatio" value="" />
+<string name="UIMode" value="full" />
+<string name="DefaultSortOrder" value="filename, ascending" />
+<string name="MenuOpeningEffect" value="scale-up" />
+<string name="LaunchScreenDuration" value="normal" />
+<string name="MenuColorScheme" value="dark" />
+<bool name="MenuBlurBackground" value="true" />
+<bool name="FoldersOnTop" value="true" />
+<bool name="FavoritesFirst" value="true" />
+<bool name="FavoritesStar" value="true" />
+<bool name="SpecialCharsASCII" value="false" />
+<bool name="ShowHiddenFiles" value="false" />
+<bool name="ShowHiddenGames" value="false" />
+<bool name="CustomEventScripts" value="false" />
+<bool name="ParseGamelistOnly" value="false" />
+<bool name="AlternativeEmulatorPerGame" value="true" />
+<bool name="ShowDefaultGameImage" value="true" />
+
+<!-- Sound Settings -->
+<bool name="NavigationSounds" value="true" />
+<bool name="VideoAudio" value="true" />
+<int name="SoundVolumeNavigation" value="70" />
+<int name="SoundVolumeVideos" value="80" />
+
+<!-- Input Settings -->
+<bool name="InputOnlyFirstController" value="false" />
+<int name="InputControllerIndex" value="-1" />
+
+<!-- Screensaver Settings -->
+<int name="ScreensaverTimer" value="300" />
+<string name="ScreensaverType" value="video" />
+<bool name="ScreensaverControls" value="true" />
+
+<!-- Video Settings -->
+<string name="VideoPlayer" value="ffmpeg" />
+<int name="VideoScanlineIntensity" value="50" />
+<bool name="VideoScanlines" value="false" />
+<bool name="VideoBlur" value="false" />
+<int name="VideoCornerRadius" value="0" />
+<bool name="VideoPillarboxes" value="true" />
+<int name="VideoPillarboxThreshold" value="30" />
+
+<!-- Network Settings -->
+<bool name="ScraperUseAccountScreenscraper" value="false" />
+
+<!-- Other Settings -->
+<bool name="DebugMode" value="false" />
+<bool name="DisplayGPUStatistics" value="false" />
+<bool name="EnableMenuKidMode" value="false" />
+<int name="AntiAliasing" value="0" />
+<int name="DisplayIndex" value="1" />
+<int name="ScreenRotate" value="0" />
+<string name="Language" value="" />
+<bool name="Fullscreen" value="true" />
+</config>

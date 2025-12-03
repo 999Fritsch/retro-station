@@ -1,0 +1,40 @@
+# ROMs - user-provided content
+roms/*
+!roms/.gitkeep
+
+# BIOS files - user-provided content
+bios/*
+!bios/.gitkeep
+
+# AppImages - downloaded at install time
+appimages/*
+!appimages/.gitkeep
+!appimages/versions.txt
+
+# Runtime and temporary files
+*.log
+*.tmp
+*.bak
+*~
+
+# Editor files
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Save files - user data
+saves/
+
+# Claude Code local settings
+.claude/
+
+# Development/planning files
+CLAUDE.md
+plan.md
+requirements.md
+tasks.md
