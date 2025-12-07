@@ -1,5 +1,5 @@
 # Retro Station - AppImage Versions
-# Generated: 2025-12-03T17:38:52+01:00
+# Generated: 2025-12-07T21:00:55+01:00
 #
 # This file documents the AppImage versions downloaded.
 # To update an emulator, delete its AppImage and re-run install.sh
@@ -9,6 +9,6 @@ esde: EmulationStation-DE-x64-3.4.0.AppImage (124MiB)
 duckstation: DuckStation-x64.AppImage (92MiB)
 pcsx2: pcsx2-v2.3.161-linux-appimage-x64-Qt.AppImage (53MiB)
 dolphin: Dolphin_Emulator-x86_64.AppImage (90MiB)
-melonds: melonDS-1.1-x86_64.AppImage (92MiB)
+melonds: melonDS-x86_64.AppImage (34MiB)
 mgba: mGBA-0.10.3-appimage-x64.appimage (24MiB)
-retroarch: RetroArch-Linux-x86_64-Nightly.AppImage (57MiB)
+retroarch: NOT DOWNLOADED

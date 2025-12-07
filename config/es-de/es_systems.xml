@@ -75,7 +75,7 @@
         <fullname>Nintendo Entertainment System</fullname>
         <path>{{PROJECT_ROOT}}/roms/nes</path>
         <extension>.fds .FDS .nes .NES .unf .UNF .unif .UNIF .7z .7Z .zip .ZIP</extension>
-        <command label="RetroArch Nestopia">env VK_LOADER_LAYERS_DISABLE='*' {{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage -L ~/.config/retroarch/cores/nestopia_libretro.so %ROM%</command>
+        <command label="RetroArch Nestopia">{{PROJECT_ROOT}}/appimages/RetroArch.AppImage -L ~/.config/retroarch/cores/nestopia_libretro.so %ROM%</command>
         <platform>nes</platform>
         <theme>nes</theme>
     </system>
@@ -86,7 +86,7 @@
         <fullname>Super Nintendo</fullname>
         <path>{{PROJECT_ROOT}}/roms/snes</path>
         <extension>.bin .BIN .bs .BS .fig .FIG .mgd .MGD .sfc .SFC .smc .SMC .swc .SWC .7z .7Z .zip .ZIP</extension>
-        <command label="RetroArch Snes9x">env VK_LOADER_LAYERS_DISABLE='*' {{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage -L ~/.config/retroarch/cores/snes9x_libretro.so %ROM%</command>
+        <command label="RetroArch Snes9x">{{PROJECT_ROOT}}/appimages/RetroArch.AppImage -L ~/.config/retroarch/cores/snes9x_libretro.so %ROM%</command>
         <platform>snes</platform>
         <theme>snes</theme>
     </system>
@@ -97,7 +97,7 @@
         <fullname>Sega Genesis</fullname>
         <path>{{PROJECT_ROOT}}/roms/genesis</path>
         <extension>.68k .68K .bin .BIN .chd .CHD .gen .GEN .md .MD .sgd .SGD .smd .SMD .7z .7Z .zip .ZIP</extension>
-        <command label="RetroArch Genesis Plus GX">env VK_LOADER_LAYERS_DISABLE='*' {{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage -L ~/.config/retroarch/cores/genesis_plus_gx_libretro.so %ROM%</command>
+        <command label="RetroArch Genesis Plus GX">{{PROJECT_ROOT}}/appimages/RetroArch.AppImage -L ~/.config/retroarch/cores/genesis_plus_gx_libretro.so %ROM%</command>
         <platform>genesis</platform>
         <theme>genesis</theme>
     </system>
@@ -108,7 +108,7 @@
         <fullname>Nintendo 64</fullname>
         <path>{{PROJECT_ROOT}}/roms/n64</path>
         <extension>.n64 .N64 .ndd .NDD .u1 .U1 .v64 .V64 .z64 .Z64 .7z .7Z .zip .ZIP</extension>
-        <command label="RetroArch Mupen64Plus">env VK_LOADER_LAYERS_DISABLE='*' {{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage -L ~/.config/retroarch/cores/mupen64plus_next_libretro.so %ROM%</command>
+        <command label="RetroArch Mupen64Plus">{{PROJECT_ROOT}}/appimages/RetroArch.AppImage --appendconfig={{PROJECT_ROOT}}/config/retroarch/n64-overrides.cfg -L ~/.config/retroarch/cores/mupen64plus_next_libretro.so %ROM%</command>
         <platform>n64</platform>
         <theme>n64</theme>
     </system>

@@ -187,7 +187,7 @@ download_retroarch_cores() {
 
     ensure_directory "$cores_dir"
 
-    # Core definitions: name|filename
+    # Core definitions
     local cores=(
         "nestopia_libretro.so"
         "snes9x_libretro.so"

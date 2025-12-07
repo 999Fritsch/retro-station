@@ -41,7 +41,7 @@
     <!-- RetroArch for NES, SNES, Genesis, N64 -->
     <emulator name="RetroArch">
         <rule type="staticpath">
-            <entry>{{PROJECT_ROOT}}/appimages/RetroArch-Linux-x86_64-Nightly.AppImage</entry>
+            <entry>{{PROJECT_ROOT}}/appimages/RetroArch.AppImage</entry>
         </rule>
     </emulator>
 </ruleList>

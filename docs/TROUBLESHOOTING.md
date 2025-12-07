@@ -239,6 +239,24 @@ mGBA supports all Game Boy variants. Check:
 
 ### RetroArch (NES, SNES, Genesis, N64)
 
+#### "symbol lookup error: wl_proxy_marshal_flags"
+
+This error occurs when there's a Wayland library version mismatch on your system:
+```
+symbol lookup error: /lib/x86_64-linux-gnu/libvulkan_intel.so: undefined symbol: wl_proxy_marshal_flags
+```
+
+**Solution:** Force X11 mode by unsetting the Wayland display:
+```bash
+WAYLAND_DISPLAY="" ./appimages/RetroArch-Linux-x86_64-Nightly.AppImage
+```
+
+The ES-DE configuration already includes this workaround. If you're running RetroArch directly, use the command above.
+
+**Root cause:** Your graphics drivers (Mesa/NVIDIA) were compiled against a newer libwayland than what's installed on your system.
+
+---
+
 #### No cores found
 Re-download cores:
 ```bash
@@ -256,6 +274,34 @@ Or manually through RetroArch:
 #### Black screen
 1. Try different video driver: Settings → Driver → Video
 2. Switch between Vulkan and OpenGL
+
+#### N64 Black Screen with Audio Playing
+
+This is a known Linux-specific issue with the mupen64plus-next core. The game runs (you can hear audio) but the video rendering fails.
+
+**Fix 1: Launch in windowed mode first** (Most common fix)
+- Press `F` before loading the game to switch to windowed mode
+- Load your N64 game
+- Press `F` again to return to fullscreen
+- This is a documented bug with fullscreen loading in mupen64plus
+
+**Fix 2: Convert ROM to .z64 format**
+- Your ROM may be in `.n64` (Little Endian) or `.v64` (byte-swapped) format
+- The native `.z64` (Big Endian) format is most reliable
+- Convert online at: https://hack64.net/tools/swapper.php
+
+**Fix 3: Try GL video driver**
+- In RetroArch: Settings → Driver → Video → gl
+- Or edit `~/.config/retroarch/retroarch.cfg`:
+  ```
+  video_driver = "gl"
+  ```
+
+**Fix 4: Use ParaLLEl N64 core**
+- Download via RetroArch: Online Updater → Core Downloader → Nintendo 64 (ParaLLEl)
+- Select this core when loading N64 games (uses different rendering)
+
+**Reference:** [GitHub Issue #46](https://github.com/libretro/mupen64plus-libretro-nx/issues/46)
 
 ---
 

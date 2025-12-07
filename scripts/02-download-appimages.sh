@@ -18,7 +18,7 @@ declare -A APPIMAGES=(
     ["dolphin"]="Dolphin_Emulator-x86_64.AppImage|https://github.com/pkgforge-dev/Dolphin-emu-AppImage/releases/download/2509%402025-12-02_1764646513/Dolphin_Emulator-2509-anylinux.squashfs-x86_64.AppImage"
     ["melonds"]="melonDS-x86_64.AppImage|https://github.com/melonDS-emu/melonDS/releases/download/0.9.5/melonDS-x86_64.AppImage"
     ["mgba"]="mGBA-0.10.3-appimage-x64.appimage|https://github.com/mgba-emu/mgba/releases/download/0.10.3/mGBA-0.10.3-appimage-x64.appimage"
-    ["retroarch"]="RetroArch-Linux-x86_64-Nightly.AppImage|https://github.com/hizzlekizzle/RetroArch-AppImage/releases/download/Linux_LTS_Nightlies/RetroArch-Linux-x86_64-Nightly.AppImage"
+    ["retroarch"]="retroarch|https://buildbot.libretro.com/stable/1.22.2/linux/x86_64/RetroArch.7z"
 )
 
 # Download order (for nice output)
@@ -38,7 +38,14 @@ get_appimage_url() {
 # Check if AppImage already exists and is valid
 appimage_exists() {
     local filepath="$1"
-    [ -f "$filepath" ] && [ -x "$filepath" ] && [ -s "$filepath" ]
+    # For retroarch from 7z, check for the AppImage
+    if [[ "$filepath" == */retroarch ]]; then
+        local project_root
+        project_root="$(get_project_root)"
+        [ -f "$project_root/appimages/RetroArch.AppImage" ] && [ -x "$project_root/appimages/RetroArch.AppImage" ]
+    else
+        [ -f "$filepath" ] && [ -x "$filepath" ] && [ -s "$filepath" ]
+    fi
 }
 
 # Download a single AppImage
@@ -83,6 +90,49 @@ download_appimage() {
             else
                 log_error "Failed to extract: $filename"
                 rm -f "$zip_dest"
+                return 1
+            fi
+        else
+            log_error "Failed to download: $filename"
+            return 1
+        fi
+    fi
+
+    # Check if URL is a 7z file (needs extraction) - used for official RetroArch
+    if [[ "$url" == *.7z ]]; then
+        log_info "Downloading $name (7z archive): $filename"
+        local archive_dest="/tmp/${name}_archive.7z"
+        local extract_dir="/tmp/${name}_extract"
+
+        if download_file "$url" "$archive_dest"; then
+            log_info "Extracting from 7z archive..."
+            rm -rf "$extract_dir"
+            mkdir -p "$extract_dir"
+
+            if 7z x -o"$extract_dir" "$archive_dest" -y >/dev/null 2>&1; then
+                # For RetroArch, the archive contains an AppImage
+                local appimage_bin
+                appimage_bin=$(find "$extract_dir" -type f -name "*.AppImage" 2>/dev/null | head -1)
+
+                if [ -n "$appimage_bin" ] && [ -f "$appimage_bin" ]; then
+                    # Copy the AppImage to appimages directory
+                    local dest_appimage="$project_root/appimages/RetroArch.AppImage"
+                    cp "$appimage_bin" "$dest_appimage"
+                    chmod +x "$dest_appimage"
+
+                    rm -f "$archive_dest"
+                    rm -rf "$extract_dir"
+                    log_success "Downloaded and extracted: RetroArch.AppImage"
+                    return 0
+                else
+                    log_error "Could not find RetroArch AppImage in archive"
+                    rm -f "$archive_dest"
+                    rm -rf "$extract_dir"
+                    return 1
+                fi
+            else
+                log_error "Failed to extract 7z: $filename"
+                rm -f "$archive_dest"
                 return 1
             fi
         else

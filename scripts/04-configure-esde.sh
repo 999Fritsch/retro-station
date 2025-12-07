@@ -141,7 +141,7 @@ verify_emulators() {
         "Dolphin_Emulator-x86_64.AppImage"
         "melonDS-x86_64.AppImage"
         "mGBA-0.10.3-appimage-x64.appimage"
-        "RetroArch-Linux-x86_64-Nightly.AppImage"
+        "RetroArch.AppImage"
     )
 
     for appimage in "${appimages[@]}"; do
