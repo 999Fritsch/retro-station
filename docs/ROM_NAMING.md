@@ -275,22 +275,88 @@ ucon64 --z64 game.v64
 
 ### CHD Compression
 
-For CD-based games (PS1, PS2, Saturn), CHD is better than ZIP:
-- Preserves CD audio
-- Maintains subchannel data
-- Single file per disc
+For CD-based games (PS1, PS2, Sega CD), CHD is the recommended format:
+- **Single file per disc** - No more cluttered folders with multiple .bin track files
+- **Preserves CD audio** - Multi-track games with CDDA audio work perfectly
+- **Maintains subchannel data** - Full compatibility with emulators
+- **Good compression** - Typically 50-70% of original size
+- **Hides duplicates in ES-DE** - Only one entry per game instead of .bin + .cue
 
-Convert to CHD:
+#### Install chdman
+
 ```bash
-# Install chdman (part of MAME)
 sudo apt install mame-tools
+```
 
+#### Basic Conversion
+
+```bash
 # Convert BIN/CUE
 chdman createcd -i game.cue -o game.chd
 
 # Convert ISO
 chdman createcd -i game.iso -o game.chd
 ```
+
+#### Multi-Track Games (with audio tracks)
+
+Games like Rayman or Tekken 3 have multiple .bin files for audio tracks. The .cue file references all of them - just point chdman at the .cue:
+
+```bash
+# This works even with 50+ track files
+chdman createcd -i "Rayman (Europe).cue" -o "Rayman (Europe).chd"
+```
+
+#### Standalone .bin Files (no .cue)
+
+If you have a .bin without a matching .cue, create one first:
+
+```bash
+# Create a basic .cue file
+echo 'FILE "Game Name.bin" BINARY
+  TRACK 01 MODE2/2352
+    INDEX 01 00:00:00' > "Game Name.cue"
+
+# Then convert
+chdman createcd -i "Game Name.cue" -o "Game Name.chd"
+```
+
+#### ECM Compressed Files
+
+ECM files (`.bin.ecm`) need to be decompressed first:
+
+```bash
+# Install ecm-uncompress (compile from source if not in repos)
+# See: https://github.com/sahlberg/fuse-unecm
+
+# Decompress
+ecm-uncompress game.bin.ecm  # Creates game.bin
+
+# Create .cue file, then convert to CHD
+```
+
+#### Batch Conversion Script
+
+Convert all games in a folder:
+
+```bash
+#!/bin/bash
+cd /path/to/roms/psx
+
+for cue in *.cue; do
+    if [ -f "$cue" ]; then
+        chd="${cue%.cue}.chd"
+        if [ ! -f "$chd" ]; then
+            echo "Converting: $cue"
+            chdman createcd -i "$cue" -o "$chd"
+        fi
+    fi
+done
+```
+
+#### After Conversion
+
+Once converted to CHD, you can delete the original .bin/.cue files to save space. The CHD contains everything needed.
 
 ---
 
