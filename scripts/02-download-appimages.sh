@@ -10,13 +10,13 @@ source "$SCRIPT_DIR/common.sh"
 
 # AppImage definitions: NAME|URL|FILENAME
 # Using pinned versions for stability
-# Updated: 2025-12-03
+# Updated: 2025-12-16
 declare -A APPIMAGES=(
     ["esde"]="EmulationStation-DE-x64-3.4.0.AppImage|https://gitlab.com/es-de/emulationstation-de/-/package_files/246875981/download"
     ["duckstation"]="DuckStation-x64.AppImage|https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-x64.AppImage"
     ["pcsx2"]="pcsx2-v2.3.161-linux-appimage-x64-Qt.AppImage|https://github.com/PCSX2/pcsx2/releases/download/v2.3.161/pcsx2-v2.3.161-linux-appimage-x64-Qt.AppImage"
     ["dolphin"]="Dolphin_Emulator-x86_64.AppImage|https://github.com/pkgforge-dev/Dolphin-emu-AppImage/releases/download/2509%402025-12-02_1764646513/Dolphin_Emulator-2509-anylinux.squashfs-x86_64.AppImage"
-    ["melonds"]="melonDS-x86_64.AppImage|https://github.com/melonDS-emu/melonDS/releases/download/0.9.5/melonDS-x86_64.AppImage"
+    ["melonds"]="melonDS-x86_64.AppImage|https://github.com/melonDS-emu/melonDS/releases/download/1.1/melonDS-1.1-appimage-x86_64.zip"
     ["mgba"]="mGBA-0.10.3-appimage-x64.appimage|https://github.com/mgba-emu/mgba/releases/download/0.10.3/mGBA-0.10.3-appimage-x64.appimage"
     ["retroarch"]="retroarch|https://buildbot.libretro.com/stable/1.22.2/linux/x86_64/RetroArch.7z"
 )
