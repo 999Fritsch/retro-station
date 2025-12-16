@@ -13,9 +13,9 @@ get_esde_appimage() {
     local project_root
     project_root="$(get_project_root)"
 
-    # Find ES-DE AppImage
+    # Find ES-DE AppImage (matches EmulationStation-DE*.AppImage, es-de*.AppImage, ES-DE*.AppImage)
     local esde_path
-    esde_path=$(find "$project_root/appimages" -name "es-de*.AppImage" -o -name "ES-DE*.AppImage" 2>/dev/null | head -1)
+    esde_path=$(find "$project_root/appimages" -maxdepth 1 \( -iname "emulationstation-de*.AppImage" -o -iname "es-de*.AppImage" \) 2>/dev/null | head -1)
 
     if [ -n "$esde_path" ] && [ -f "$esde_path" ]; then
         echo "$esde_path"
