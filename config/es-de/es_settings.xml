@@ -13,7 +13,7 @@
 <string name="AlternativeEmulator_nes" value="RetroArch Nestopia" />
 <string name="AlternativeEmulator_snes" value="RetroArch Snes9x" />
 <string name="AlternativeEmulator_genesis" value="RetroArch Genesis Plus GX" />
-<string name="AlternativeEmulator_n64" value="RetroArch Mupen64Plus" />
+<string name="AlternativeEmulator_n64" value="RetroArch ParaLLEl N64" />
 
 <bool name="StartupSystem" value="" />
 <string name="GamelistViewStyle" value="automatic" />

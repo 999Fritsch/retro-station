@@ -11,6 +11,9 @@ appimages/*
 !appimages/.gitkeep
 !appimages/versions.txt
 
+# Media - scraped artwork and metadata
+media/
+
 # Runtime and temporary files
 *.log
 *.tmp

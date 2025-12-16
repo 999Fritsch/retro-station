@@ -275,31 +275,31 @@ Or manually through RetroArch:
 1. Try different video driver: Settings → Driver → Video
 2. Switch between Vulkan and OpenGL
 
-#### N64 Black Screen with Audio Playing
+#### N64 Games Not Working
 
-This is a known Linux-specific issue with the mupen64plus-next core. The game runs (you can hear audio) but the video rendering fails.
+Retro Station uses the **ParaLLEl N64** core by default because the mupen64plus-next core has known black screen issues on Linux with Vulkan.
 
-**Fix 1: Launch in windowed mode first** (Most common fix)
-- Press `F` before loading the game to switch to windowed mode
-- Load your N64 game
-- Press `F` again to return to fullscreen
-- This is a documented bug with fullscreen loading in mupen64plus
+If you experience problems:
 
-**Fix 2: Convert ROM to .z64 format**
-- Your ROM may be in `.n64` (Little Endian) or `.v64` (byte-swapped) format
-- The native `.z64` (Big Endian) format is most reliable
+**Black screen with audio playing:**
+- This was a known issue with mupen64plus-next. Retro Station now uses ParaLLEl N64 to avoid this.
+- If you manually switched cores, switch back to ParaLLEl N64.
+
+**Poor performance:**
+- ParaLLEl N64 requires decent GPU support
+- Try lowering internal resolution in Quick Menu → Options
+- Ensure your GPU drivers are up to date
+
+**ROM compatibility issues:**
+- Try converting your ROM to `.z64` format (Big Endian) - most reliable format
 - Convert online at: https://hack64.net/tools/swapper.php
+- `.n64` (Little Endian) and `.v64` (byte-swapped) formats may have issues
 
-**Fix 3: Try GL video driver**
-- In RetroArch: Settings → Driver → Video → gl
-- Or edit `~/.config/retroarch/retroarch.cfg`:
-  ```
-  video_driver = "gl"
-  ```
-
-**Fix 4: Use ParaLLEl N64 core**
-- Download via RetroArch: Online Updater → Core Downloader → Nintendo 64 (ParaLLEl)
-- Select this core when loading N64 games (uses different rendering)
+**If you need mupen64plus-next:**
+Some games may work better with mupen64plus. To use it:
+1. Download via RetroArch: Online Updater → Core Downloader → Mupen64Plus-Next
+2. Launch in windowed mode first (press `F`), then toggle fullscreen after game loads
+3. Try GL video driver instead of Vulkan
 
 **Reference:** [GitHub Issue #46](https://github.com/libretro/mupen64plus-libretro-nx/issues/46)
 

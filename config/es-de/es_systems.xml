@@ -108,7 +108,7 @@
         <fullname>Nintendo 64</fullname>
         <path>{{PROJECT_ROOT}}/roms/n64</path>
         <extension>.n64 .N64 .ndd .NDD .u1 .U1 .v64 .V64 .z64 .Z64 .7z .7Z .zip .ZIP</extension>
-        <command label="RetroArch Mupen64Plus">{{PROJECT_ROOT}}/appimages/RetroArch.AppImage --appendconfig={{PROJECT_ROOT}}/config/retroarch/n64-overrides.cfg -L ~/.config/retroarch/cores/mupen64plus_next_libretro.so %ROM%</command>
+        <command label="RetroArch ParaLLEl N64">{{PROJECT_ROOT}}/appimages/RetroArch.AppImage -L ~/.config/retroarch/cores/parallel_n64_libretro.so %ROM%</command>
         <platform>n64</platform>
         <theme>n64</theme>
     </system>

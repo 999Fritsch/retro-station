@@ -24,7 +24,7 @@ A reproducible retro gaming setup for Ubuntu LAN parties. Clone, run, play.
 | NES | RetroArch (Nestopia) | No |
 | SNES | RetroArch (Snes9x) | No |
 | Sega Genesis | RetroArch (Genesis Plus GX) | No |
-| Nintendo 64 | RetroArch (Mupen64Plus) | No |
+| Nintendo 64 | RetroArch (ParaLLEl N64) | No |
 
 ## Quick Start
 

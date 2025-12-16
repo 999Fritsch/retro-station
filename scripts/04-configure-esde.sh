@@ -67,11 +67,15 @@ deploy_settings() {
 <string name="AlternativeEmulator_nes" value="RetroArch Nestopia" />\
 <string name="AlternativeEmulator_snes" value="RetroArch Snes9x" />\
 <string name="AlternativeEmulator_genesis" value="RetroArch Genesis Plus GX" />\
-<string name="AlternativeEmulator_n64" value="RetroArch Mupen64Plus" />' "$dest"
+<string name="AlternativeEmulator_n64" value="RetroArch ParaLLEl N64" />' "$dest"
             fi
             # Update ROMDirectory if needed
             if ! grep -q "$project_root/roms" "$dest"; then
                 sed -i "s|<string name=\"ROMDirectory\" value=\"[^\"]*\"|<string name=\"ROMDirectory\" value=\"$project_root/roms/\"|" "$dest"
+            fi
+            # Update MediaDirectory if needed
+            if ! grep -q "$project_root/media" "$dest"; then
+                sed -i "s|<string name=\"MediaDirectory\" value=\"[^\"]*\"|<string name=\"MediaDirectory\" value=\"$project_root/media\"|" "$dest"
             fi
             log_success "ES-DE settings updated"
             return 0

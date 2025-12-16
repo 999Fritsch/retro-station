@@ -173,6 +173,15 @@ configure_retroarch() {
     ensure_directory "$config_dir/shaders"
 
     substitute_placeholders "$template" "$config_dir/retroarch.cfg"
+
+    # Deploy N64 core options (GLideN64 plugin for mupen64plus-next)
+    local n64_core_opts="$project_root/config/retroarch/config/Mupen64Plus-Next/Mupen64Plus-Next.opt"
+    if [ -f "$n64_core_opts" ]; then
+        ensure_directory "$config_dir/config/Mupen64Plus-Next"
+        cp "$n64_core_opts" "$config_dir/config/Mupen64Plus-Next/Mupen64Plus-Next.opt"
+        log_info "N64 core options deployed (GLideN64 plugin)"
+    fi
+
     log_success "RetroArch configured"
 }
 
@@ -192,7 +201,7 @@ download_retroarch_cores() {
         "nestopia_libretro.so"
         "snes9x_libretro.so"
         "genesis_plus_gx_libretro.so"
-        "mupen64plus_next_libretro.so"
+        "parallel_n64_libretro.so"
     )
 
     for core in "${cores[@]}"; do
