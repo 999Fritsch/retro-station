@@ -75,9 +75,18 @@ verify_packages() {
     fi
 }
 
-# Main installation function
-install_dependencies() {
-    log_info "Checking system dependencies..."
+# Required tools for Steam Deck (command names, not package names)
+REQUIRED_TOOLS_STEAMDECK=(
+    "curl"
+    "wget"
+    "unzip"
+    "7z"
+    "jq"
+)
+
+# Ubuntu installation function
+install_dependencies_ubuntu() {
+    log_info "Checking system dependencies (Ubuntu mode)..."
 
     # Check Ubuntu version
     check_ubuntu_version || {
@@ -126,6 +135,64 @@ install_dependencies() {
         log_error "Some packages failed to install"
         return 1
     fi
+}
+
+# Steam Deck installation function (no system package installation)
+install_dependencies_steamdeck() {
+    log_info "Checking system dependencies (Steam Deck mode)..."
+    log_info "Skipping system package installation (immutable filesystem)"
+    log_info "Verifying available tools..."
+
+    local missing_tools=()
+    local available_tools=()
+
+    for tool in "${REQUIRED_TOOLS_STEAMDECK[@]}"; do
+        if has_command "$tool"; then
+            available_tools+=("$tool")
+        else
+            missing_tools+=("$tool")
+        fi
+    done
+
+    # Report available tools
+    if [ ${#available_tools[@]} -gt 0 ]; then
+        for tool in "${available_tools[@]}"; do
+            log_success "$tool is available"
+        done
+    fi
+
+    # Report missing tools
+    if [ ${#missing_tools[@]} -gt 0 ]; then
+        echo ""
+        log_warning "Missing tools: ${missing_tools[*]}"
+        log_warning "Some features may be limited."
+        log_info "To install missing tools on Steam Deck:"
+        log_info "  1. Switch to Desktop Mode"
+        log_info "  2. Open Konsole and run: sudo steamos-readonly disable"
+        log_info "  3. Install via: sudo pacman -S <package>"
+        log_info "  4. Re-enable read-only: sudo steamos-readonly enable"
+        log_info ""
+        log_info "Note: System changes may be reset by SteamOS updates."
+    else
+        log_success "All required tools are available"
+    fi
+
+    # Always succeed - missing tools are warnings, not errors
+    return 0
+}
+
+# Main dispatcher function
+install_dependencies() {
+    local platform="${PLATFORM_MODE:-$(detect_platform)}"
+
+    case "$platform" in
+        steamdeck)
+            install_dependencies_steamdeck
+            ;;
+        ubuntu|unknown|*)
+            install_dependencies_ubuntu
+            ;;
+    esac
 }
 
 # Run if executed directly (not sourced)

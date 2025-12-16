@@ -1,6 +1,6 @@
 # Retro Station
 
-A reproducible retro gaming setup for Ubuntu LAN parties. Clone, run, play.
+A reproducible retro gaming setup for Ubuntu and Steam Deck. Clone, run, play.
 
 ## Features
 
@@ -10,6 +10,7 @@ A reproducible retro gaming setup for Ubuntu LAN parties. Clone, run, play.
 - **Controller-first** - Xbox controller mappings pre-configured
 - **Portable** - All paths relative to project root
 - **Idempotent** - Safe to run installation multiple times
+- **Steam Deck ready** - Automatic detection, Gaming Mode integration
 
 ## Supported Systems
 
@@ -81,13 +82,54 @@ See [docs/ROM_NAMING.md](docs/ROM_NAMING.md) for format details.
 
 Or use the desktop shortcut created during installation.
 
+## Steam Deck Quick Start
+
+### 1. Switch to Desktop Mode
+
+Press **Steam** > **Power** > **Switch to Desktop**
+
+### 2. Clone and Install
+
+Open Konsole and run:
+```bash
+cd ~
+git clone https://github.com/yourusername/retro-station.git
+cd retro-station
+./install.sh
+```
+
+The installer auto-detects Steam Deck and preserves the immutable filesystem.
+
+### 3. Add to Steam
+
+1. Open Steam (Desktop Mode)
+2. **Games** > **Add a Non-Steam Game...**
+3. Select **Retro Station** > **Add Selected Programs**
+
+### 4. Add BIOS and ROMs
+
+Same as Ubuntu - add files to `bios/` and `roms/` directories.
+
+### 5. Play in Gaming Mode
+
+Return to Gaming Mode. Find **Retro Station** in your library and launch!
+
+See [docs/STEAM_DECK.md](docs/STEAM_DECK.md) for detailed instructions.
+
 ## System Requirements
 
+### Ubuntu
 - **OS:** Ubuntu 22.04 LTS or 24.04 LTS
 - **Disk Space:** ~2GB for emulators + space for ROMs
 - **RAM:** 8GB recommended (16GB for PS2)
 - **GPU:** Vulkan-capable graphics card recommended
 - **Controller:** Xbox controller (wired or wireless with adapter)
+
+### Steam Deck
+- **OS:** SteamOS 3.x
+- **Mode:** Desktop Mode required for installation
+- **Disk Space:** ~2GB for emulators + space for ROMs
+- **Storage:** Internal SSD or SD card
 
 ## Usage
 
@@ -148,6 +190,7 @@ retro-station/
 
 - [BIOS Checklist](docs/BIOS_CHECKLIST.md) - Required BIOS files and checksums
 - [ROM Naming Guide](docs/ROM_NAMING.md) - Supported formats per system
+- [Steam Deck Guide](docs/STEAM_DECK.md) - Steam Deck installation and usage
 - [Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
 - [Updating](docs/UPDATING.md) - How to update emulators
 

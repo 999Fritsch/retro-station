@@ -17,6 +17,55 @@ source "$PROJECT_ROOT/scripts/common.sh"
 # Track overall success
 INSTALL_SUCCESS=true
 
+# Show help message
+show_help() {
+    echo "Retro Station Installer"
+    echo ""
+    echo "Usage: ./install.sh [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  --steamdeck    Force Steam Deck installation mode (no system packages)"
+    echo "  --ubuntu       Force Ubuntu installation mode (uses apt)"
+    echo "  --help         Show this help message"
+    echo ""
+    echo "If no option is provided, the platform will be auto-detected."
+    echo ""
+    echo "Examples:"
+    echo "  ./install.sh              # Auto-detect platform"
+    echo "  ./install.sh --steamdeck  # Force Steam Deck mode"
+    echo "  ./install.sh --ubuntu     # Force Ubuntu mode"
+}
+
+# Parse command line arguments
+PLATFORM_MODE=""
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --steamdeck)
+            PLATFORM_MODE="steamdeck"
+            shift
+            ;;
+        --ubuntu)
+            PLATFORM_MODE="ubuntu"
+            shift
+            ;;
+        --help|-h)
+            show_help
+            exit 0
+            ;;
+        *)
+            log_error "Unknown option: $1"
+            echo "Use --help for usage information."
+            exit 1
+            ;;
+    esac
+done
+
+# Auto-detect platform if not specified
+if [ -z "$PLATFORM_MODE" ]; then
+    PLATFORM_MODE=$(detect_platform)
+fi
+export PLATFORM_MODE
+
 # Cleanup function for error handling
 cleanup() {
     local exit_code=$?
@@ -56,6 +105,7 @@ main() {
     print_banner
 
     log_info "Project root: $PROJECT_ROOT"
+    log_info "Platform mode: $PLATFORM_MODE"
     echo ""
 
     # Phase 0: System dependencies
@@ -113,6 +163,16 @@ main() {
         source "$PROJECT_ROOT/scripts/05-verify-bios.sh"
     else
         log_warning "Script 05-verify-bios.sh not found, skipping..."
+    fi
+
+    # Phase 6: Steam integration (Steam Deck only)
+    if [ "$PLATFORM_MODE" = "steamdeck" ]; then
+        log_phase "Phase 6: Steam Integration"
+        if [ -f "$PROJECT_ROOT/scripts/06-steam-integration.sh" ]; then
+            source "$PROJECT_ROOT/scripts/06-steam-integration.sh"
+        else
+            log_warning "Script 06-steam-integration.sh not found, skipping..."
+        fi
     fi
 
     # Final summary

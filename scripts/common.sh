@@ -190,3 +190,46 @@ check_sudo() {
         return 1
     fi
 }
+
+# Check if a command exists (silent version)
+# Usage: has_command <command_name>
+# Returns: 0 if available, 1 if not
+has_command() {
+    command -v "$1" &>/dev/null
+}
+
+# Detect the platform type
+# Returns: "steamdeck", "ubuntu", or "unknown"
+detect_platform() {
+    if [ ! -f /etc/os-release ]; then
+        echo "unknown"
+        return 0
+    fi
+
+    # Source os-release in a subshell to avoid polluting environment
+    local os_id
+    local os_version
+    os_id=$(. /etc/os-release && echo "$ID")
+    os_version=$(. /etc/os-release && echo "$VERSION_ID")
+
+    # Steam Deck detection
+    if [[ "$os_id" == "steamos" ]]; then
+        echo "steamdeck"
+        return 0
+    fi
+
+    # Fallback: Check for Steam Deck-specific markers
+    if [[ -d "/usr/share/plymouth/themes/steamos" ]] || \
+       [[ -f "/etc/steamos-release" ]]; then
+        echo "steamdeck"
+        return 0
+    fi
+
+    # Ubuntu detection
+    if [[ "$os_id" == "ubuntu" ]]; then
+        echo "ubuntu"
+        return 0
+    fi
+
+    echo "unknown"
+}
